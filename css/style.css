@@ -1,0 +1,57 @@
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FF5E5B;
+    border-radius: 10px 10px 0 0;
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+    color: #FFED66;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #FF5E5B;
+    height: 60%;
+    margin: 0;
+}
+
+.grid {
+    display: inline-grid;
+    grid-template-columns: repeat(16, auto);
+    border: 5px solid #f7b1b0;
+    border-radius: 5px;
+    height: 575px;
+    width: 575px;
+}
+
+.cell {
+    background-color: white;
+    border: 1px solid black;
+}
+
+.selectors {
+    margin-top: 10px;
+}
+
+.sliderAndValue > p {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
