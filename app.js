@@ -1,7 +1,8 @@
 let color = 'black'
+const gridContainer = document.querySelector('.grid')
 
 function generateGrid() {
-    const gridContainer = document.querySelector('.grid')
+    //const gridContainer = document.querySelector('.grid')
 
     let size = 16 * 16
 
@@ -29,6 +30,12 @@ function setToBlackColor() {
     color = 'black'
 }
 
+function removeChildNodes(parentNode) {
+    while (parentNode.firstChild) {
+        parentNode.removeChild(parentNode.firstChild)
+    }
+}
+
 function handleMouseoverEvent(cells, newColor) {
     newColor()
     cells.forEach(cell => cell.addEventListener('mouseover', () => {
@@ -43,15 +50,33 @@ const cells = document.querySelectorAll('.cell')
 cells.forEach(cell => cell.addEventListener('mouseover', draw))
 
 const rgb = document.querySelector('#rgb')
-rgb.addEventListener('click', () => {
-    handleMouseoverEvent(cells, setToRgbColor)
-})
+const rgbButtonEventListener = (cells) => {
+    rgb.addEventListener('click', () => {
+        handleMouseoverEvent(cells, setToRgbColor)
+    })
+}
 
 const black = document.querySelector('#black')
-black.addEventListener('click', () => {
-    handleMouseoverEvent(cells, setToBlackColor)
+const blackButtonEventListener = (cells) => {
+    black.addEventListener('click', () => {
+        handleMouseoverEvent(cells, setToBlackColor)
+    })
+}
+
+const reset = document.querySelector('#reset')
+reset.addEventListener('click', () => {
+    color = 'black'
+    removeChildNodes(gridContainer)
+    generateGrid()
+    const newCells = document.querySelectorAll('.cell')
+    newCells.forEach(cell => cell.addEventListener('mouseover', draw))
+    init(newCells)
 })
 
-const reset = document.querySelector('click', () => {
-    
-})
+function init(cells) {
+    rgbButtonEventListener(cells)
+    blackButtonEventListener(cells)
+}
+
+init(cells)
+
