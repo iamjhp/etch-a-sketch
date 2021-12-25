@@ -5,7 +5,7 @@
     flex-direction: column;
 }
 
-.header {
+.top {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,5 +53,17 @@
     align-items: center;
 }
 
+.bottom {
+    background-color: #FF5E5B;
+    border-radius: 0 0 10px 10px;
+    padding: 10px;
+}
+
+.footer{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 20px;
+    color:#FF5E5B
+}
 
 

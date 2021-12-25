@@ -1,10 +1,12 @@
 let color = 'black'
 const gridContainer = document.querySelector('.grid')
+const slider = document.querySelector('#slider')
+const silderValue = document.querySelector('.value')
 
-function generateGrid() {
+function generateGrid(val = 16) {
     //const gridContainer = document.querySelector('.grid')
 
-    let size = 16 * 16
+    let size = val * val
 
     for (let i = 0; i < size; i++) {
         const div = document.createElement('div')
@@ -44,6 +46,13 @@ function handleMouseoverEvent(cells, newColor) {
     }))
 }
 
+function createNewCells() {
+    const newCells = document.querySelectorAll('.cell')
+    newCells.forEach(cell => cell.addEventListener('mouseover', draw))
+
+    return newCells
+}
+
 generateGrid()
 
 const cells = document.querySelectorAll('.cell')
@@ -67,9 +76,9 @@ const reset = document.querySelector('#reset')
 reset.addEventListener('click', () => {
     color = 'black'
     removeChildNodes(gridContainer)
-    generateGrid()
-    const newCells = document.querySelectorAll('.cell')
-    newCells.forEach(cell => cell.addEventListener('mouseover', draw))
+    silderValue.textContent = slider.value
+    generateGrid(slider.value)
+    let newCells = createNewCells()
     init(newCells)
 })
 
@@ -77,6 +86,16 @@ function init(cells) {
     rgbButtonEventListener(cells)
     blackButtonEventListener(cells)
 }
+
+slider.addEventListener('change', () => {
+    color = 'black'
+    silderValue.textContent = slider.value
+    removeChildNodes(gridContainer)
+    gridContainer.setAttribute('style', `grid-template-columns: repeat(${slider.value}, auto)`)
+    generateGrid(slider.value)
+    let newCells = createNewCells()
+    init(newCells)
+})
 
 init(cells)
 
